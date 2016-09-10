@@ -1,7 +1,7 @@
 BoxClass[] boxObject = new BoxClass[10];
 
 void setup(){
-    size(600, 400, P3D);
+    size(800, 600, P3D);
     smooth();
 
     for( int i = 0; i < boxObject.length; i++) {
@@ -12,7 +12,7 @@ void setup(){
 void draw() {
     background(200);
 
-    for( int i = 0; i < boxObject.length; i++) {
+    for(int i = 0; i < boxObject.length; i++) {
         boxObject[i].update();
         boxObject[i].display();
     }
@@ -24,6 +24,11 @@ class BoxClass {
     BoxClass(float x, float y) {
         posX = x;
         posY = y;
+    }
+
+    void start() {
+        this.update();
+        this.display();
     }
 
     void update() {
