@@ -5,7 +5,9 @@ float radius = 100;
 void setup(){
     size(800, 600, OPENGL);
     stroke(0);
+    strokeWeight(1);
     background(255);
+    smooth();
 }
 
 void draw() {
