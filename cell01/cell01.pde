@@ -38,6 +38,29 @@ void restart() {
             cells[x][y] = new Cell(x, y);
         }
     }
+
+    for(int x = 0; x < _numX; x++) {
+        for(int y = 0; y < _numY; y++) {
+            int above = y - 1;
+            int below = y + 1;
+            int left = x - 1;
+            int right = x + 1;
+
+            if(above < 0) above = _numY - 1;
+            if(below == _numY) below = 0;
+            if(left < 0) left = _numX - 1;
+            if(right == _numX) right = 0;
+
+            cells[x][y].addNeighbour(cells[left][above]);
+            cells[x][y].addNeighbour(cells[left][y]);
+            cells[x][y].addNeighbour(cells[left][below]);
+            cells[x][y].addNeighbour(cells[x][below]);
+            cells[x][y].addNeighbour(cells[right][below]);
+            cells[x][y].addNeighbour(cells[right][y]);
+            cells[x][y].addNeighbour(cells[right][above]);
+            cells[x][y].addNeighbour(cells[x][above]);
+        }
+    }
 }
 
 void mousePressed() {
@@ -69,7 +92,26 @@ class Cell {
     }
 
     void calcNextState() {
+        int liveCount = 0;
+        for(int i = 0; i < neighbours.length; i++) {
+            if(neighbours[i].state == true) {
+                liveCount++;
+            }
+        }
 
+        if(state == true) {
+            if(liveCount == 2 || liveCount == 3) {
+                nextState = true;
+            } else {
+                nextState = false;
+            }
+        } else {
+            if(liveCount == 3) {
+                nextState = true;
+            } else {
+                nextState = false;
+            }
+        }
     }
 
     void drawCells() {
