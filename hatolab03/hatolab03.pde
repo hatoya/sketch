@@ -39,6 +39,7 @@ void draw() {
             gifExport.addFrame();
         } else {
             gifExport.finish();
+            _gifFlag = false;
         }
     }
 }
