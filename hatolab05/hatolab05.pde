@@ -1,12 +1,5 @@
-import gifAnimation.*;
-
-GifMaker gifExport;
-
 Point[][] points = {};
 int _space = 30;
-
-int _gifFrame = 0;
-boolean _gifFlag = false;
 
 void setup(){
     size(600, 450, OPENGL);
@@ -37,26 +30,6 @@ void draw() {
         for(int y = 0; y * _space <= height; y++) {
             points[x][y].draw();
         }
-    }
-
-    if(_gifFlag) {
-        if(frameCount <= _gifFrame + 50 * 3){
-            gifExport.addFrame();
-        } else {
-            gifExport.finish();
-            _gifFlag = false;
-        }
-    }
-}
-
-void keyPressed() {
-    if(key == 's') {
-        gifExport = new GifMaker(this, "../../gif/" + split(sketchPath(), '/')[split(sketchPath(), '/').length - 1] + '/' + nf(month(), 2) + nf(day(), 2) + nf(hour(), 2) + nf(minute(), 2) + ".gif");
-        gifExport.setRepeat(0);
-        gifExport.setDelay(20);
-
-        _gifFrame = frameCount;
-        _gifFlag = true;
     }
 }
 
