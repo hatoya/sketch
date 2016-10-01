@@ -44,7 +44,7 @@ class Point {
     Point(float _x, float _y) {
         this.x = _x;
         this.y = _y;
-        this.z = noise(x / 100, y / 100, float(frameCount) / 100);
+        this.update();
     }
 
     void update() {
