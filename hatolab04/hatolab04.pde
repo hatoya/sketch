@@ -1,3 +1,5 @@
+import processing.svg.PGraphicsSVG;
+
 Point[][] points = {};
 int _space = 5;
 
@@ -25,6 +27,14 @@ void draw() {
             points[x][y].update();
             points[x][y].draw();
         }
+    }
+}
+
+void keyPressed() {
+    if(key == 's') {
+        beginRecord(SVG, "../../svg/" + split(sketchPath(), '/')[split(sketchPath(), '/').length - 1] + '/' + nf(month(), 2) + nf(day(), 2) + nf(hour(), 2) + nf(minute(), 2) + ".svg");
+        draw();
+        endRecord();
     }
 }
 
